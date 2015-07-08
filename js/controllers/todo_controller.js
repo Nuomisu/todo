@@ -21,19 +21,19 @@ Todos.TodoController = Ember.ObjectController.extend({
 
   isEditing: false,
 
-  isCompleted: function(key, value){
+  iscompleted: function(key, value){
     var model = this.get('model');
 
     if (value === undefined) {
       // property being used as a getter
-      return model.get('isCompleted');
+      return model.get('iscompleted');
     } else {
       // property being used as a setter
-      model.set('isCompleted', value);
+      model.set('iscompleted', value);
       model.save();
       return value;
     }
-  }.property('model.isCompleted')
+  }.property('model.iscompleted')
 
 
 });

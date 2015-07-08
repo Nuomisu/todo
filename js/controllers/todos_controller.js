@@ -8,8 +8,9 @@ Todos.TodosController = Ember.ArrayController.extend({
 
       // Create the new Todo model
       var todo = this.store.createRecord('todo', {
+
         title: title,
-        isCompleted: false
+        iscompleted: false
       });
 
       // Clear the "New Todo" text field
@@ -19,7 +20,7 @@ Todos.TodosController = Ember.ArrayController.extend({
       todo.save();
     },
     clearCompleted: function() {
-      var completed = this.filterBy('isCompleted', true);
+      var completed = this.filterBy('iscompleted', true);
       completed.invoke('deleteRecord');
       completed.invoke('save');
     }
@@ -30,12 +31,12 @@ Todos.TodosController = Ember.ArrayController.extend({
   }.property('completed'),
 
   completed: function() {
-    return this.filterBy('isCompleted', true).get('length');
-  }.property('@each.isCompleted'),
+    return this.filterBy('iscompleted', true).get('length');
+  }.property('@each.iscompleted'),
 
   remaining: function() {
-    return this.filterBy('isCompleted', false).get('length');
-  }.property('@each.isCompleted'),
+    return this.filterBy('iscompleted', false).get('length');
+  }.property('@each.iscompleted'),
 
   inflection: function() {
     var remaining = this.get('remaining');
@@ -44,13 +45,13 @@ Todos.TodosController = Ember.ArrayController.extend({
 
   allAreDone: function(key, value) {
     if (value === undefined) {
-      return !!this.get('length') && this.isEvery('isCompleted', true);
+      return !!this.get('length') && this.isEvery('iscompleted', true);
     } else {
-      this.setEach('isCompleted', value);
+      this.setEach('iscompleted', value);
       this.invoke('save');
       return value;
     }
-  }.property('@each.isCompleted')
+  }.property('@each.iscompleted')
 
 });
 
